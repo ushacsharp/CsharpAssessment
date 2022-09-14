@@ -101,44 +101,66 @@ namespace AssessmentProj
             }
         }
 
+        public Testlet ProcessTestlet(string testletId, List<ItemClass> items)
+        {
+            try
+            {
+                //validate Testlet
+                bool isValid = ValidateTestlet(testletId, items);
+                //if validation is successful process it
+                if (isValid == true)
+                {
+                    this.randomizer = new Randomizer(2);
+                    var randomItems = this.randomizer.RandomizeItems(items);
+                    return new Testlet(testletId, randomItems);
 
-            public Testlet ValidateTestlet(string testletId, List<ItemClass> items)
+                }
+
+                else
+                {
+                    throw new Exception("Testlet should have 10 items out of which 4 pretest and 6 operational");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                Console.ReadLine();
+            }
+            return null;
+
+        }
+        public bool ValidateTestlet(string testletId, List<ItemClass> items)
         {
             if (!IsEmpty(items))
             {
                 if (items.Count == FixedItems)
                 {
                     var itemsTypeWise = items.ToLookup(i => i.ItemType);
-                    bool isValid = false;
+                    
 
                     bool isValidPreTest = ValidateNumberOfPreTest(items);
                     bool isValidOperational = ValidateNumberOfOperational(items);
 
-                    if (isValidPreTest == true && isValidOperational==true)
+                    if (isValidPreTest == true && isValidOperational == true)
                     {
-                        isValid = true;
+                        return true;
                     }
 
-                    if (isValid == true)
-                    {
-                        this.randomizer = new Randomizer(2);
-                        var randomItems = this.randomizer.RandomizeItems(items);
-                        return new Testlet(testletId, randomItems);
-
-                    }
                     else
                     {
-                        return null;
+                        return false;
                     }
+                    
 
                 }
 
-                return null;
+                return false;
 
             }
             else
             {
-                return null;
+                return false;
             }
 
         }
