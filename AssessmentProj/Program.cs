@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +23,11 @@ namespace AssessmentProj
             ItemList.Add(new ItemClass { ItemId = "8", ItemType = ItemTypeEnum.Operational });
             ItemList.Add(new ItemClass { ItemId = "9", ItemType = ItemTypeEnum.Operational });
             ItemList.Add(new ItemClass { ItemId = "10", ItemType = ItemTypeEnum.Pretest });
+            //ItemList.Add(new ItemClass { ItemId = "11", ItemType = ItemTypeEnum.Pretest });
+
 
             Testlet t = new Testlet("1", ItemList);
-            Testlet Organized = t.ValidateTestlet("1", ItemList);
+            Testlet Organized = t.ProcessTestlet("1", ItemList);
 
             Console.WriteLine("Printing here");
 
