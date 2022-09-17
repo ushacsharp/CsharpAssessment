@@ -2,13 +2,13 @@ using AssessmentProj;
 
 namespace System.Linq
 {
-    internal class SystemCore_EnumerableDebugView<T>
+    internal class SystemCoreEnumerableDebugView<T>
     {
-        private ILookup<ItemTypeEnum, ItemClass> itemsTypeWise;
+        private ILookup<ItemTypeEnum, ItemClass> _itemsTypeWise;
 
-        public SystemCore_EnumerableDebugView(ILookup<ItemTypeEnum, ItemClass> itemsTypeWise)
+        public SystemCoreEnumerableDebugView(ILookup<ItemTypeEnum, ItemClass> itemsTypeWise)
         {
-            this.itemsTypeWise = itemsTypeWise;
+            this._itemsTypeWise = itemsTypeWise;
         }
     }
 }
